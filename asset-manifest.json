@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/freeCodeCamp-25-5-Clock/static/css/main.8a0a0dad.chunk.css",
+    "main.js": "/freeCodeCamp-25-5-Clock/static/js/main.e830432b.chunk.js",
+    "main.js.map": "/freeCodeCamp-25-5-Clock/static/js/main.e830432b.chunk.js.map",
+    "runtime-main.js": "/freeCodeCamp-25-5-Clock/static/js/runtime-main.f550353e.js",
+    "runtime-main.js.map": "/freeCodeCamp-25-5-Clock/static/js/runtime-main.f550353e.js.map",
+    "static/css/2.1bdd473c.chunk.css": "/freeCodeCamp-25-5-Clock/static/css/2.1bdd473c.chunk.css",
+    "static/js/2.9ba22053.chunk.js": "/freeCodeCamp-25-5-Clock/static/js/2.9ba22053.chunk.js",
+    "static/js/2.9ba22053.chunk.js.map": "/freeCodeCamp-25-5-Clock/static/js/2.9ba22053.chunk.js.map",
+    "index.html": "/freeCodeCamp-25-5-Clock/index.html",
+    "static/css/2.1bdd473c.chunk.css.map": "/freeCodeCamp-25-5-Clock/static/css/2.1bdd473c.chunk.css.map",
+    "static/css/main.8a0a0dad.chunk.css.map": "/freeCodeCamp-25-5-Clock/static/css/main.8a0a0dad.chunk.css.map",
+    "static/js/2.9ba22053.chunk.js.LICENSE.txt": "/freeCodeCamp-25-5-Clock/static/js/2.9ba22053.chunk.js.LICENSE.txt",
+    "static/media/font-awesome.min.css": "/freeCodeCamp-25-5-Clock/static/media/fontawesome-webfont.f691f37e.woff"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f550353e.js",
+    "static/css/2.1bdd473c.chunk.css",
+    "static/js/2.9ba22053.chunk.js",
+    "static/css/main.8a0a0dad.chunk.css",
+    "static/js/main.e830432b.chunk.js"
+  ]
+}
