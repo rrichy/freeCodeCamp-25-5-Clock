@@ -24,18 +24,9 @@ const TimeController = (props) => {
     return (
         <div className='time-control'>
             <div id={id + '-label'}>{props.label}</div>
-            <button id={id + '-decrement'} onClick={props.onClick}>DOWN</button>
+            <button id={id + '-increment'} onClick={props.onClick}><i className="fa fa-angle-up" aria-hidden="true"></i></button>
             <div id={id + '-length'}>{props.length}</div>
-            <button id={id + '-increment'} onClick={props.onClick}>UP</button>
-        </div>
-    )
-}
-
-const Timer = (props) => {
-    return (
-        <div id="timer-wrapper">
-            <div id="timer-label">{props.time}</div>
-            <div id="time-left">{props.current}</div>
+            <button id={id + '-decrement'} onClick={props.onClick}><i className="fa fa-angle-down" aria-hidden="true"></i></button>
         </div>
     )
 }
@@ -56,8 +47,9 @@ class App extends React.Component {
     }
 
     handleClick(e) {
+        // console.log(e.target.id || e.target.parentElement.id);
         let newBreak, newSession;
-        switch(e.target.id){
+        switch(e.target.id || e.target.parentElement.id){
             case 'break-increment':
                 newBreak = this.state.breakLength >= 60 ? 60 : this.state.breakLength + 1;
                 this.setState(state => ({
@@ -91,17 +83,17 @@ class App extends React.Component {
 
     toggleTimer() {
         if(this.state.timerOn){
-            document.getElementById('start_stop').innerText = 'START';
+            document.getElementById('start_stop').innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
             clearInterval(counter);
             this.setState({
                 timerOn: false
             });
         }
         else{
-            document.getElementById('start_stop').innerText = 'PAUSE';
-            this.setState(state => ({
+            document.getElementById('start_stop').innerHTML = '<i class="fa fa-pause" aria-hidden="true"></i>';
+            this.setState({
                 timerOn: true
-            }));
+            });
 
             counter = setInterval(() => {
                 if(this.state.current <= 0){
@@ -109,7 +101,7 @@ class App extends React.Component {
                         activity: state.activity === 'Session' ? 'Break' : 'Session',
                         current: (state.activity === 'Session' ? state.breakLength : state.sessionLength) * 60
                     }));
-                    /////////ring-ring
+                    this.beeper.play();
                 }
                 else{
                     //change color at less than 60
@@ -124,20 +116,26 @@ class App extends React.Component {
     }
 
     resetTimer() {
-        document.getElementById('start_stop').innerText = 'START';
+        this.beeper.pause();
+        this.beeper.currentTime = 0;
+        document.getElementById('start_stop').innerHTML = '<i class="fa fa-play" aria-hidden="true"></i>';
         clearInterval(counter);
         this.setState(DEFAULT);
     }
 
     render() {
         return (
-            <div>
-                <h1>25 + 5 Clock</h1>
+            <div id="wrapper">
+                <div id="title">25 + 5 Clock</div>
                 <TimeController label={'Break'} length={this.state.breakLength} onClick={this.handleClick} />
                 <TimeController label={'Session'} length={this.state.sessionLength} onClick={this.handleClick} />
-                <Timer time={this.state.activity} current={mmssFormat(this.state.current)} />
-                <button id="start_stop" onClick={this.toggleTimer}>START</button>
-                <button id="reset" onClick={this.resetTimer}>RESET</button>
+                <div id="timer-wrapper">
+                    <div id="timer-label">{this.state.activity}</div>
+                    <div id="time-left">{mmssFormat(this.state.current)}</div>
+                </div>
+                <button id="start_stop" onClick={this.toggleTimer}><i className="fa fa-play" aria-hidden="true"></i></button>
+                <button id="reset" onClick={this.resetTimer}><i className="fa fa-refresh" aria-hidden="true"></i></button>
+                <audio id="beep" preload="auto" ref={(audio) => {this.beeper = audio}} src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" />
             </div>
         )
     }
